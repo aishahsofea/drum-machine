@@ -10,6 +10,7 @@ const Drum = (_ => {
     const $bankCheckbox = document.querySelector("#bank");
     const $display = document.querySelector("#display");
     const $volumeDown = document.querySelector("#volume-down");
+    const $volumeRange = document.querySelector("#volume-range");
     let bankOff = true;
     let kit = heaterKit;
 
@@ -26,10 +27,23 @@ const Drum = (_ => {
                     kit = heaterKit;
                 }
             });
+            $bankCheckbox.disabled = false;
             $drumPad.addEventListener("click", playDrumPad);
         } else {
+            $bankCheckbox.checked = false;
+            $bankCheckbox.disabled = true;
+            $volumeSlider.value = 50;
+            $volumeRange.innerHTML = `volume: ${$volumeSlider.value}`;
             $drumPad.removeEventListener("click", playDrumPad);
         }
+
+        document.addEventListener("keypress", event => {
+            const arrByKeyPress = kit.filter((obj) => obj.keyCode == event.keyCode - 32);
+            const audio = new Audio(`${arrByKeyPress[0].url}`);
+            audio.volume = $volumeSlider.value/100;
+            audio.play()
+            $display.innerHTML = `${arrByKeyPress[0].id}`;
+        })
     }
 
     const playDrumPad = event => {
@@ -39,14 +53,12 @@ const Drum = (_ => {
             audio.volume = $volumeSlider.value/100;
             audio.play();
             $display.innerHTML = `${arrByKeyTrigger[0].id}`;
-            console.log(arrByKeyTrigger[0].id);
         }
     }
 
     $volumeSlider.oninput = function() {
-        document.querySelector("#volume-range").innerHTML = `volume: ${this.value}`;
+        $volumeRange.innerHTML = `volume: ${this.value}`;
         if (this.value == 0) {
-            console.log(`the value is ${this.value} now`)
             $volumeDown.innerHTML = `<i class="fa fa-volume-off"></i>`;
         } else {
             $volumeDown.innerHTML = `<i class="fa fa-volume-down"></i>`;
