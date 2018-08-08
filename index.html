@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drum Machine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+</head>
+<body>
+    <div id="drum-machine">
+        <div id="keysAndSettings">
+            <div id="keys">
+                <div>
+                    <button class="drum-pad" id="Q">Q</button>
+                    <button class="drum-pad" id="W">W</button>
+                    <button class="drum-pad" id="E">E</button>
+                </div>
+                <div>
+                    <button class="drum-pad" id="A">A</button>
+                    <button class="drum-pad" id="S">S</button>
+                    <button class="drum-pad" id="D">D</button>
+                </div>
+                <div>
+                    <button class="drum-pad" id="Z">Z</button>
+                    <button class="drum-pad" id="X">X</button>
+                    <button class="drum-pad" id="C">C</button>
+                </div>
+            </div>
+            <div id="settings">
+                <div>
+                    <p class="label"><b>POWER</b></p>
+                    <label class="switch">
+                        <input type="checkbox" id="power">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="display"></div>
+                <div>
+                    <div id="volume-down"><i class="fa fa-volume-down"></i></div>
+                    <div id="volume-up"><i class="fa fa-volume-up"></i></div>
+                    <div class="volume-slider-container">
+                        <input type="range" min="0", max="100" class="volume-slider">
+                        <p id="volume-range">volume: 50</p>
+                    </div>
+                </div>
+                <div>
+                <p class="label"><b>BANK</b></p>
+                    <label class="switch">
+                        <input type="checkbox" id="bank">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="created-by">by <b>aishahsofea</b></div>
+
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
