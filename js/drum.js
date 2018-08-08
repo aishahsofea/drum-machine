@@ -27,23 +27,26 @@ const Drum = (_ => {
                     kit = heaterKit;
                 }
             });
+
             $bankCheckbox.disabled = false;
             $drumPad.addEventListener("click", playDrumPad);
+            window.addEventListener("keypress", playWithKey);
         } else {
             $bankCheckbox.checked = false;
             $bankCheckbox.disabled = true;
             $volumeSlider.value = 50;
             $volumeRange.innerHTML = `volume: ${$volumeSlider.value}`;
             $drumPad.removeEventListener("click", playDrumPad);
+            window.removeEventListener("keypress", playWithKey)
         }
+    }
 
-        document.addEventListener("keypress", event => {
-            const arrByKeyPress = kit.filter((obj) => obj.keyCode == event.keyCode - 32);
+    const playWithKey = event => {
+        const arrByKeyPress = kit.filter((obj) => obj.keyCode == event.keyCode - 32);
             const audio = new Audio(`${arrByKeyPress[0].url}`);
             audio.volume = $volumeSlider.value/100;
             audio.play()
             $display.innerHTML = `${arrByKeyPress[0].id}`;
-        })
     }
 
     const playDrumPad = event => {
