@@ -14,6 +14,8 @@ const Drum = (_ => {
     let bankOff = true;
     let kit = heaterKit;
 
+    $bankCheckbox.disabled = true;
+
     const listeners = permission => {
         if (permission) {
             $bankCheckbox.addEventListener("change", function() {
